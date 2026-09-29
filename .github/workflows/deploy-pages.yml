@@ -1,4 +1,4 @@
-name: Deploy Alureal UI Kit
+name: Deploy Alureal UI
 
 on:
   push:
@@ -24,12 +24,29 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+
+      - name: Validate platform
+        run: |
+          test -f index.html
+          test -f foundations.html
+          test -f tokens.html
+          test -f components.html
+          test -f patterns.html
+          test -f accessibility.html
+          test -f playground.html
+          test -f changelog.html
+          test -f docs-app.js
+          test -f docs-app.css
+          node --check docs-app.js
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Upload static site
         uses: actions/upload-pages-artifact@v4
         with:
           path: .
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
