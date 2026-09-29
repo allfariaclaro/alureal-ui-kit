@@ -30,3 +30,6 @@ closeModal?.addEventListener('click',()=>queueMicrotask(()=>lastFocused?.focus()
 modal?.addEventListener('click',event=>{if(event.target===modal)queueMicrotask(()=>lastFocused?.focus())});
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!modal.hidden)queueMicrotask(()=>lastFocused?.focus())});
 themeButton?.setAttribute('aria-label','Alternar entre tema claro e escuro');
+
+// polish-followup
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!modal.hidden)queueMicrotask(()=>lastFocused?.focus())},{capture:true});
